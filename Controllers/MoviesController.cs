@@ -44,7 +44,9 @@ namespace WebMVC.Controllers
 	        var movieGenreVM = new MovieGenreViewModel
 	        {
 		        Genres = new SelectList(await genreQuery.Distinct().ToListAsync()),
-		        Movies = await movies.ToListAsync()
+		        Movies = await movies.ToListAsync(),
+                MovieGenre = movieGenre,
+                SearchString = searchString
 	        };
 
 			return View(movieGenreVM);
