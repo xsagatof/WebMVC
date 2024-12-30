@@ -1,59 +1,51 @@
 ﻿@model WebMVC.Models.MovieGenreViewModel
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "MoviesIndex";
 }
 
 <h1>Index</h1>
 
 <p>
-	<a asp-action="Create">Create New</a>
+	<a asp-action="Create" class="btn btn-sm btn-outline-secondary">Add new movie</a>
+	
+	<form asp-controller="Movies" asp-action="Index" method="get">
+		<p>
+			<select asp-for="MovieGenre" asp-items="Model.Genres">
+				<option value="">All</option>
+			</select>
+		
+			<label>Title: <input type="text" asp-for="SearchString"/></label>
+			<input type="submit" value="Filter" />
+		</p>
+	</form>
 </p>
 
-<form asp-controller="Movies" asp-action="Index" method="get">
-	<p>
-		<select asp-for="MovieGenre" asp-items="Model.Genres">
-            <option value="">All</option>
-		</select>
-		
-		<label>Title: <input type="text" asp-for="SearchString"/></label>
-        <input type="submit" value="Filter" />
-	</p>
-</form>
+<div class="album py-5 bg-light">
+	<div class="container">
+		<div class="row">
+			@foreach (var item in Model.Movies!)
+			{
+				<div class="col-md-4">
+					<div class="card mb-4 box-shadow">
+						<img src="/images/car.jpg" alt="Movie Poster" class="img-fluid" />
+						<div class="card-body">
+							<p class="card-text">
+								 <!-- Update based on your model -->
+							</p>
+							<div class="d-flex justify-content-between align-items-center">
+								<div class="btn-group">
+									<a asp-controller="Movies" asp-action="Details" asp-route-id="@item.Id" 
+									   class="btn btn-sm btn-outline-secondary">Details</a>
+									<a asp-controller="Movies" asp-action="Edit" asp-route-id="@item.Id" 
+									   class="btn btn-sm btn-outline-secondary">Edit</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			}
+		</div>
+	</div>
+</div>
 
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Movies![0].Title)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Movies![0].Genre)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Movies![0].Link)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model.Movies!) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Title)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Genre)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Link)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
