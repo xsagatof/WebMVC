@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WebMVC.Data;
 
@@ -10,9 +11,11 @@ using WebMVC.Data;
 namespace WebMVC.Migrations
 {
     [DbContext(typeof(WebMVCContext))]
-    partial class WebMVCContextModelSnapshot : ModelSnapshot
+    [Migration("20241231064529_AddImagePoster")]
+    partial class AddImagePoster
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -34,8 +37,8 @@ namespace WebMVC.Migrations
                         .HasMaxLength(30)
                         .HasColumnType("nvarchar(30)");
 
-                    b.Property<string>("ImagePoster")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<byte[]>("ImagePoster")
+                        .HasColumnType("varbinary(max)");
 
                     b.Property<string>("Link")
                         .HasColumnType("nvarchar(max)");

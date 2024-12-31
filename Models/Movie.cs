@@ -15,4 +15,5 @@ public class Movie
     [StringLength(30)]
     public string? Genre { get; set; }
     public string? Link { get; set; }
+    public string? ImagePoster { get; set; }
 }

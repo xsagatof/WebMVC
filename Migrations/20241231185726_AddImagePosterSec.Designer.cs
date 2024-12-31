@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WebMVC.Data;
 
@@ -10,9 +11,11 @@ using WebMVC.Data;
 namespace WebMVC.Migrations
 {
     [DbContext(typeof(WebMVCContext))]
-    partial class WebMVCContextModelSnapshot : ModelSnapshot
+    [Migration("20241231185726_AddImagePosterSec")]
+    partial class AddImagePosterSec
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
