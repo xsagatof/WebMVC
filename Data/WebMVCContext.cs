@@ -15,5 +15,7 @@ namespace WebMVC.Data
         }
 
         public DbSet<Movie> Movie { get; set; } = default!;
+        public DbSet<User> Users { get; set; }
+
     }
 }
