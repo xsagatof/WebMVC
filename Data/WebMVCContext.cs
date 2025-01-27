@@ -2,12 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using WebMVC.Models;
 
 namespace WebMVC.Data
 {
-    public class WebMVCContext : DbContext
+    public class WebMVCContext : IdentityDbContext<User>
     {
         public WebMVCContext (DbContextOptions<WebMVCContext> options)
             : base(options)
@@ -15,7 +16,6 @@ namespace WebMVC.Data
         }
 
         public DbSet<Movie> Movie { get; set; } = default!;
-        public DbSet<User> Users { get; set; }
 
     }
 }
