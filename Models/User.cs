@@ -1,23 +1,11 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.AspNetCore.Identity;
 
 namespace WebMVC.Models
 {
-	public class User
+	public class User : IdentityUser
 	{
-		[Key]
-		public int Id { get; set; }
 		
-		[Required(ErrorMessage = "Username is required")]
-		[Column(TypeName = "nvarchar(100)")]
-		public string Username { get; set; }
-		
-		[Required(ErrorMessage = "Email is required")]
-		[Column(TypeName = "nvarchar(100)")]
-		public string Password { get; set; }
-		
-		[Required(ErrorMessage = "Email is required")]
-		[Column(TypeName = "nvarchar(100)")]
-		public string Email { get; set; }
 	}
 }
