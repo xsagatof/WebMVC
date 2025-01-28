@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using WebMVC.Data;
 using WebMVC.Models;
@@ -16,6 +17,15 @@ namespace WebMVC
 			// Add services to the container.
 			builder.Services.AddControllersWithViews();
 
+			builder.Services.AddIdentity<User, IdentityRole>().AddEntityFrameworkStores<WebMVCContext>().AddDefaultTokenProviders();
+
+			builder.Services.ConfigureApplicationCookie(options =>
+			{
+				options.LoginPath = "/Auth/Login";
+				options.LogoutPath = "/Auth/Logout";
+				options.ExpireTimeSpan = TimeSpan.FromDays(7);
+			});
+
 			var app = builder.Build();
 
             using (var scope = app.Services.CreateScope())
@@ -29,7 +39,6 @@ namespace WebMVC
             if (!app.Environment.IsDevelopment())
 			{
 				app.UseExceptionHandler("/Movies/Error");
-				// The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
 				app.UseHsts();
 			}
 
@@ -38,6 +47,7 @@ namespace WebMVC
 
 			app.UseRouting();
 
+			app.UseAuthentication();
 			app.UseAuthorization();
 
 			app.MapControllerRoute(
