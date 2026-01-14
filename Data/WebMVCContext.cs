@@ -10,8 +10,7 @@ namespace WebMVC.Data
 {
     public class WebMVCContext : IdentityDbContext<User>
     {
-        public WebMVCContext (DbContextOptions<WebMVCContext> options)
-            : base(options)
+        public WebMVCContext (DbContextOptions<WebMVCContext> options) : base(options)
         {
         }
 
