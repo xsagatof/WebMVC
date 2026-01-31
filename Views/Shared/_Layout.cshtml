@@ -10,22 +10,49 @@
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Movies" asp-action="Index">Movie app</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-	                <span class="navbar-toggler-icon"></span>
+        <nav class="navbar navbar-expand-sm navbar-light bg-white border-bottom shadow-sm mb-3">
+            <div class="container">
+
+                <a class="navbar-brand fw-bold fs-4"
+                   style="color: purple;"
+                   asp-controller="Movies"
+                   asp-action="Index">
+                    🎬 MovieApp
+                </a>
+
+                <button class="navbar-toggler" type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#mainNavbar"
+                        aria-controls="mainNavbar"
+                        aria-expanded="false"
+                        aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="ms-auto">
-	                <a asp-controller="Auth" asp-action="Login" class="btn btn-outline-primary me-2">Login</a>
-	                <a asp-controller="Auth" asp-action="Register" class="btn btn-primary">Sign Up</a>
+
+                <div class="collapse navbar-collapse" id="mainNavbar">
+                    <div class="ms-auto d-flex align-items-center gap-2">
+
+                        <a asp-controller="Auth"
+                           asp-action="Login"
+                           class="btn btn-outline-primary btn-sm">
+                            Login
+                        </a>
+
+                        <a asp-controller="Auth"
+                           asp-action="Register"
+                           class="btn btn-primary btn-sm">
+                            Sign Up
+                        </a>
+
+                    </div>
                 </div>
 
             </div>
         </nav>
     </header>
-    <div class="container">
+
+    <!-- ⬇️ spacing improved -->
+    <div class="container mt-4">
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
